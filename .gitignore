@@ -1,0 +1,7 @@
+# Source and downloaded datasets
+/data/
+/original/
+/*.xlsx
+
+# Generated intermediate datasets and model outputs
+/working/

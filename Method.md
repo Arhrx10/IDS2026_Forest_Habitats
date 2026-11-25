@@ -41,6 +41,12 @@ The script prepares forest habitat monitoring plots for machine learning by divi
 
 Limitations are as follows: The 1 km clustering threshold has not been empirically validated against spatial autocorrelation. Class proportions are balanced approximately rather than guaranteed, and rare habitat types may have too few test observations for reliable class-specific accuracy assessment.
 
+**4\. Random Forest habitat-type model (random\_forest\_model\_4.ipynb)**
+
+The model predicts monitoring-plot `habitat_code` for the ten forest habitat classes from the mean and median Sentinel index values extracted for each plot. Unlabeled observations and the `0` (“0 elupaigatüüp”) label are excluded. It uses the spatial train/test labels created in step 3 rather than making a new random split. Missing predictor values are median-imputed within a scikit-learn pipeline, so imputation is fitted on training data only. The Random Forest uses balanced class weights to account for uneven class frequencies. Test accuracy, balanced accuracy, macro F1, per-class results, and a confusion matrix are reported. The fitted pipeline and held-out predictions are saved under `working/`.
+
+No whole-raster min-max normalization is applied: the extraction notebook already converts the stored integer index values using the catalog scale factor. The model's performance should be treated as an initial baseline, especially for rare habitat classes.
+
 **Appendix 1.Different tests tried, but not used in the analysis**
 
 ***Possible reference data***
